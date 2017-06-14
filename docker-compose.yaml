@@ -1,0 +1,20 @@
+url-shortener-fe:
+  build: ./url-shortener-fe
+  environment:
+    - NODE_ENV
+  ports:
+    - 8081:8081
+  links:
+    - url-shortener-master
+
+url-shortener-master:
+  build: ./url-shortener-master
+  command: app
+  environment:
+    - NODE_ENV
+  ports:
+    - 3000:3000
+  links:
+    - mongo
+mongo:
+  image: mongo:3.2
